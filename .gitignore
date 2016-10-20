@@ -1,0 +1,5 @@
+# Ignore autosave files.
+*.asv
+
+# Ignore macOS files.
+.DS_STORE
