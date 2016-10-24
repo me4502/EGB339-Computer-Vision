@@ -16,5 +16,5 @@ function controlShapes = GetControlSheet(image, highestPoint)
     end
     for i=1:length(greenBlobs)
         controlShapes(i + length(redBlobs)) = ControlShape(greenBlobs(i), 'green');
-    end
+    end    
 end

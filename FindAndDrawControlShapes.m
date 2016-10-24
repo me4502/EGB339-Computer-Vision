@@ -1,4 +1,4 @@
-function foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoint)
+function foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoint, lowestPoint)
     [sw, sh, ~] = size(image);
     blankImage = zeros(sw, sh);
 
@@ -11,16 +11,14 @@ function foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoin
     redBlobs = iblobs(imRed, 'boundary', 'area', [1000 50000]);    
     greenBlobs = iblobs(imGreen, 'boundary', 'area', [1000 50000]);
     
-    redBlobs = redBlobs(redBlobs.vc < highestPoint);
-    greenBlobs = greenBlobs(greenBlobs.vc < highestPoint);
-    
-    % (2) area=3796, cent=(355.3,228.2), theta=2.01, b/a=0.991, class=1, label=2, touch=0, parent=89, perim=258.8, circ=0.792  
-    
+    redBlobs = redBlobs(redBlobs.vc < highestPoint & redBlobs.vc > lowestPoint);
+    greenBlobs = greenBlobs(greenBlobs.vc < highestPoint & greenBlobs.vc > lowestPoint);
+        
     for i = 1:length(controlShapes)        
        if strcmp(controlShapes(i).colour, 'green') == 1
            for gb = 1:length(greenBlobs)
-              if (abs(greenBlobs(gb).circularity - controlShapes(i).blob.circularity) < 0.11)
-                 if (abs(greenBlobs(gb).area - controlShapes(i).blob.area) < 1000)
+              if (abs(greenBlobs(gb).circularity - controlShapes(i).blob.circularity) < 0.15)
+                 if (abs(greenBlobs(gb).area - controlShapes(i).blob.area) < 1250)
                      foundBlobs(i) =  greenBlobs(gb);
                      break;
                  end
@@ -28,8 +26,8 @@ function foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoin
            end
        else
            for rb = 1:length(redBlobs)
-              if (abs(redBlobs(rb).circularity - controlShapes(i).blob.circularity) < 0.11)
-                  if (abs(redBlobs(rb).area - controlShapes(i).blob.area) < 1000)
+              if (abs(redBlobs(rb).circularity - controlShapes(i).blob.circularity) < 0.15)
+                  if (abs(redBlobs(rb).area - controlShapes(i).blob.area) < 1500)
                      foundBlobs(i) =  redBlobs(rb);
                      break;
                   end
@@ -47,6 +45,6 @@ function foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoin
     end
     
     idisp(newImage);
-    
+                    
     DrawBlobs(foundBlobs, 'g', 'g*');
 end

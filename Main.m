@@ -6,8 +6,16 @@ function Main(robot)
     highestPoint = 0;
     
     for i = 1:length(blobs)
-       if highestPoint < blobs(i).vc
-           highestPoint = blobs(i).vc;
+       if highestPoint < blobs(i).vmax
+           highestPoint = blobs(i).vmax;
+       end
+    end
+    
+    lowestPoint = 50000;
+    
+    for i = 1:length(blobs)
+        if lowestPoint > blobs(i).vmin
+           lowestPoint = blobs(i).vmin;
        end
     end
         
@@ -19,14 +27,14 @@ function Main(robot)
     
     [~] = waitforbuttonpress;
     
-    FindAndDrawAllShapes(image, highestPoint);
+    FindAndDrawAllShapes(image, highestPoint, lowestPoint);
     
     [~] = waitforbuttonpress;
     
-    foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoint);
+    foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoint, lowestPoint);
     
     homographyMatrix = GetHomography(blobs);
-        
+            
     for i = 1:length(foundBlobs)
        p = [foundBlobs(i).uc foundBlobs(i).vc];
        q = homtrans(homographyMatrix, p');

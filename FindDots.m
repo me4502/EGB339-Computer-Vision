@@ -13,4 +13,6 @@ function blobs = FindDots(image)
         fprintf('Warning! Blob count not 9!');
         Disp(blobs);
     end
+        
+    blobs = BlobBubbleSort(blobs);
 end
