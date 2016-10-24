@@ -3,7 +3,8 @@ function blobs = FindDots(image)
     imBlue = image(:,:,3);
     
     imBlue = imBlue > 0.5;
-    
+
+    figure(1);
     idisp(imBlue) %Da ba dee da ba dum
     
     blobs = iblobs(imBlue, 'boundary', 'area', [1000 50000]);
@@ -11,6 +12,6 @@ function blobs = FindDots(image)
     
     if (length(blobs) ~= 9)
         fprintf('Warning! Blob count not 9!');
-        blobs
+        Disp(blobs);
     end
 end
