@@ -20,7 +20,7 @@ function HandToPosition(position)
     converted_theta = round((theta_difference * 180/pi) * joint_a_gear_ratio);
     converted_distance = round((distance - distance_current) * joint_b_gear_ratio);
     
-    max_motor_power = 50;
+    max_motor_power = 40;
     
     if (abs(converted_theta) > abs(converted_distance))
         motorA.Power = max_motor_power;
@@ -44,9 +44,7 @@ function HandToPosition(position)
         
     motorA.TachoLimit = abs(converted_theta);
     motorB.TachoLimit = abs(converted_distance);
-    
-    converted_theta
-        
+            
     if (abs(converted_theta) > 0)
         motorA.SendToNXT();
         motorA.WaitFor();
