@@ -16,10 +16,7 @@ function foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoin
     
     % (2) area=3796, cent=(355.3,228.2), theta=2.01, b/a=0.991, class=1, label=2, touch=0, parent=89, perim=258.8, circ=0.792  
     
-    for i = 1:length(controlShapes)
-        
-        controlShapes(i).blob
-        
+    for i = 1:length(controlShapes)        
        if strcmp(controlShapes(i).colour, 'green') == 1
            for gb = 1:length(greenBlobs)
               if (abs(greenBlobs(gb).circularity - controlShapes(i).blob.circularity) < 0.11)

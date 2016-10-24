@@ -27,5 +27,9 @@ function Main()
     
     homographyMatrix = GetHomography(blobs);
     
-    homographyMatrix
+    for i = 1:length(foundBlobs)
+       p = [foundBlobs(i).uc foundBlobs(i).vc];
+       q = homtrans(homographyMatrix, p');
+       fprintf('Shape %d is at %f,%f\n', i, q(1), q(2));
+    end    
 end
