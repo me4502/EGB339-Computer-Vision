@@ -7,6 +7,6 @@ function homographyMatrix = GetHomography(dotBlobs)
         spots(1, i) = dotBlobs(i).uc;
         spots(2, i) = dotBlobs(i).vc;
     end
-        
+    
     homographyMatrix = homography(Q', spots);
 end
