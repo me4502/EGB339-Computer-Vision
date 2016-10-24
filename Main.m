@@ -34,7 +34,9 @@ function Main(robot)
     foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoint, lowestPoint);
     
     homographyMatrix = GetHomography(blobs);
-            
+    
+    points = zeros(length(foundBlobs), 2);
+    
     for i = 1:length(foundBlobs)
        p = [foundBlobs(i).uc foundBlobs(i).vc];
        q = homtrans(homographyMatrix, p');
@@ -42,7 +44,7 @@ function Main(robot)
        points(i,1) = q(1);
        points(i,2) = q(2);
     end
-    
+        
     if (robot)
         [~] = waitforbuttonpress;
 
