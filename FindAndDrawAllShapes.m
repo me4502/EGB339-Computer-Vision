@@ -17,6 +17,7 @@ function FindAndDrawAllShapes(image, highestPoint)
     DrawBlobs(greenBlobs, 'g', 'g*');
         
     blobs = [redBlobs,greenBlobs];
+        
     triangles = blobs((blobs.circularity - pi/8) < 0.35 & (blobs.circularity - pi/8) > -0.1);
             
     DrawBlobs(triangles, 'r--', 'r*');

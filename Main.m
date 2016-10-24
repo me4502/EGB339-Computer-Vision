@@ -23,6 +23,8 @@ function Main()
     
     [~] = waitforbuttonpress;
     
+    foundBlobs = FindAndDrawControlShapes(image, controlShapes, highestPoint);
+    
     homographyMatrix = GetHomography(blobs);
     
     homographyMatrix
