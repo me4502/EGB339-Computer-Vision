@@ -16,32 +16,14 @@ function Robot(startingPoint, points)
             
     SetupStartingPosition();
             
-    while ~isempty(points)
-        closest = [-100000 -100000];
-        closest_index = -1;
-        closest_diff = 10000000;
-        index = 1;
-        for point = points'                 
-            diff = (point(1) - last_point(1))^2 + (point(2) - last_point(2))^2;
-            if (closest_diff > diff)
-               closest_diff = diff;
-               closest = point;
-               closest_index = index;
-            end
-            
-            index = index + 1;
-        end
-        point = closest;
-        
+    for point = points.'
         % Print out the point.
         disp(point);
         
         % Draw to the position.
         HandToPosition(point);
         last_point = point;
-        
-        points = points(~ismember(1:size(points, 1), [closest_index]), :);
-        
+                
         NXT_PlayTone(800, 800)
     end
     
