@@ -1,6 +1,6 @@
 % Main function to the CV program.
 function Main(robot)
-    image = GetImage('test-images/iphone7-1.jpg');
+    image = GetImage('exam1.jpg');
     blobs = FindDots(image);
     
     highestPoint = 0;
